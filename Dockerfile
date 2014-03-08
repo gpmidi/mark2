@@ -11,7 +11,7 @@ RUN apt-get -y upgrade --no-install-recommends
 # Stuff pip will require
 RUN apt-get install -y \
   build-essential git python python-dev \
-  python-setuptools python-pip wget curl \
+  python-setuptools python-pip wget curl
 
 RUN add-apt-repository ppa:webupd8team/java -y
 RUN apt-get update
