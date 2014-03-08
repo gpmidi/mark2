@@ -12,8 +12,7 @@ RUN apt-get -y upgrade --no-install-recommends
 RUN apt-get install -y \
   build-essential git python python-dev \
   python-setuptools python-pip wget curl \
-  
-  
+    
 RUN pip install -r requirements.txt
 
 RUN apt-get remove -y \
