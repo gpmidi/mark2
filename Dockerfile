@@ -18,10 +18,11 @@ RUN apt-get install -y \
 
 #RUN wget -O /minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
 
+VOLUME ["/var/lib/minecraft"]
+
 ADD ./ /var/lib/minecraft/    
 RUN pip install -r /var/lib/minecraft/requirements.txt
-
-VOLUME ["/var/lib/minecraft"]
+RUN ln -s /var/lib/minecraft/mark2 /usr/bin/mark2
 
 RUN apt-get remove -y \
   build-essential wget curl
