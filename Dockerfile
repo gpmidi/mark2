@@ -13,7 +13,7 @@ RUN apt-get install -y \
   python-setuptools python-pip wget curl \
   openjdk-7-jre-headless curl rdiff-backup \
   python-openssl libssl-dev \
-  supervisord logrotate cron
+  supervisor logrotate cron
 
 RUN mkdir -p /var/log/supervisord && \
   chmod 700 /var/log/supervisord/
