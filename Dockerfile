@@ -13,7 +13,7 @@ RUN apt-get install -y \
   build-essential git python python-dev \
   python-setuptools python-pip wget curl \
   openjdk-7-jre-headless curl rdiff-backup \
-  openssh-server
+  openssh-server python-openssl libssl-dev
 
 
 #RUN wget -O /minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
