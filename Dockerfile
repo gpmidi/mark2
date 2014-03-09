@@ -48,8 +48,8 @@ RUN wget -O /var/lib/minecraft/mc-main/minecraft.jar https://s3.amazonaws.com/Mi
 
 RUN  chmod 400 /root/.ssh/authorized_keys \
   && chown root:root /root/.ssh/authorized_keys \
-  && chown -R 1000.1000 /var/lib/minecraft \
-  && chmod -R 755 /var/lib/minecraft
+  && chown -R 1000.1000 /var/lib/minecraft /etc/mark2 \
+  && chmod -R 755 /var/lib/minecraft /etc/mark2
 
 #RUN apt-get remove -y \
 #  build-essential openssh-server vim
