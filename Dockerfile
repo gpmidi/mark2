@@ -24,12 +24,16 @@ ADD ./supervisord.d/ /etc/supervisor/conf.d/
 # Log rotate config
 ADD ./logrotate.d/supervisord.conf /etc/logrotate.d/supervisord.conf
 
-VOLUME ["/var/lib/minecraft"]
+VOLUME ["/var/lib/minecraft","/etc/mark2"]
 
 ADD ./ /var/lib/minecraft/    
-RUN chmod +x /var/lib/minecraft/mark2
-
-RUN wget -O /var/lib/minecraft/mc-main/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
+RUN chmod +x /var/lib/minecraft/mark2 \
+  && mkdir /etc/mark2 \
+  && chmod -R 755 /var/lib/minecraft/ \
+  && cp -a /var/lib/minecraft/mc-main/ /etc/mark2/
+  && chmod -R 755 /etc/mark2
+  
+RUN wget -O /var/lib/minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
 
 RUN pip install -r /var/lib/minecraft/requirements.txt
 RUN ln -s /var/lib/minecraft/mark2 /usr/bin/mark2
