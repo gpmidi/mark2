@@ -22,7 +22,7 @@ RUN mkdir -p /var/log/supervisord && \
 ADD ./supervisord.d/supervisord.conf.d/*.conf /etc/supervisor/conf.d/
 
 # Log rotate config
-ADD ./DockerConfigFiles/logrotate.d/supervisord.conf /etc/logrotate.d/supervisord.conf
+ADD ./logrotate.d/supervisord.conf /etc/logrotate.d/supervisord.conf
 
 VOLUME ["/var/lib/minecraft"]
 
