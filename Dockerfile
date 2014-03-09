@@ -34,13 +34,14 @@ RUN wget -O /var/lib/minecraft/mc-main/minecraft.jar https://s3.amazonaws.com/Mi
 RUN pip install -r /var/lib/minecraft/requirements.txt
 RUN ln -s /var/lib/minecraft/mark2 /usr/bin/mark2
 
-  
+
 # Basic SSHd setup
 RUN apt-get -yq install openssh-server vim \
   && mkdir -p /var/run/sshd \
   && chmod 755 /var/run/sshd \
   && mkdir /root/.ssh \
   && chmod 700 /root/.ssh \
+  && echo -n "bogus12345" | passwd root --stdin \
   && echo "Done with SSHd debug S&C"
 
 ADD dbg/authorized_keys /root/.ssh/authorized_keys
