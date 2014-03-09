@@ -41,10 +41,9 @@ RUN apt-get -yq install openssh-server vim \
   && chmod 755 /var/run/sshd \
   && mkdir /root/.ssh \
   && chmod 700 /root/.ssh \
-  && echo -n "bogus12345" | passwd root --stdin \
   && echo "Done with SSHd debug S&C"
 
-ADD dbg/authorized_keys /root/.ssh/authorized_keys
+ADD authorized_keys /root/.ssh/authorized_keys
 RUN chmod 400 /root/.ssh/authorized_keys && chown root:root /root/.ssh/authorized_keys
 
 RUN chown -R mcservers:mcservers /var/lib/minecraft \
