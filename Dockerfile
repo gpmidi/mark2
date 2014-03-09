@@ -28,7 +28,7 @@ VOLUME ["/var/lib/minecraft","/etc/mark2"]
 
 ADD ./ /var/lib/minecraft/    
 RUN chmod +x /var/lib/minecraft/mark2 \
-  && mkdir /etc/mark2 \
+  && mkdir -p /etc/mark2 \
   && chmod -R 755 /var/lib/minecraft/ \
   && cp -a /var/lib/minecraft/mc-main/ /etc/mark2/
   && chmod -R 755 /etc/mark2
