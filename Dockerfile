@@ -34,8 +34,6 @@ RUN  chmod +x /var/lib/minecraft/mark2 \
   && cp -a /var/lib/minecraft/mc-main/ /etc/mark2/
   && chmod -R 755 /etc/mark2
   
-RUN wget -O /var/lib/minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
-
 RUN pip install -r /var/lib/minecraft/requirements.txt
 RUN ln -s /var/lib/minecraft/mark2 /usr/bin/mark2
 
@@ -48,6 +46,7 @@ RUN apt-get -yq install openssh-server vim \
   && echo "Done with SSHd debug S&C"
 
 ADD ./authorized_keys /root/.ssh/authorized_keys
+RUN wget -O /var/lib/minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
 
 RUN  chmod 400 /root/.ssh/authorized_keys \
   && chown root:root /root/.ssh/authorized_keys \
