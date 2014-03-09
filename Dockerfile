@@ -34,7 +34,7 @@ RUN wget -O /var/lib/minecraft/mc-main/minecraft.jar https://s3.amazonaws.com/Mi
 RUN pip install -r /var/lib/minecraft/requirements.txt
 RUN ln -s /var/lib/minecraft/mark2 /usr/bin/mark2
 
-
+# Warning: This should not be used in a production setup
 # Basic SSHd setup
 RUN apt-get -yq install openssh-server vim \
   && mkdir -p /var/run/sshd \
