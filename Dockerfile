@@ -31,7 +31,7 @@ ADD ./ /var/lib/minecraft/
 RUN  chmod +x /var/lib/minecraft/mark2 \
   && mkdir -p /etc/mark2 \
   && chmod -R 755 /var/lib/minecraft/ \
-  && cp -a /var/lib/minecraft/mc-main/ /etc/mark2/
+  && cp -a /var/lib/minecraft/mc-main/* /etc/mark2/
   && chmod -R 755 /etc/mark2
   
 RUN pip install -r /var/lib/minecraft/requirements.txt
