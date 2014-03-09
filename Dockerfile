@@ -44,7 +44,7 @@ RUN apt-get -yq install openssh-server vim \
   && echo "Done with SSHd debug S&C"
 
 ADD ./authorized_keys /root/.ssh/authorized_keys
-RUN wget -O /var/lib/minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
+RUN wget -O /var/lib/minecraft/mc-main/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
 
 RUN  chmod 400 /root/.ssh/authorized_keys \
   && chown root:root /root/.ssh/authorized_keys \
