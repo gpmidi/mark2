@@ -1,7 +1,8 @@
 FROM ubuntu:13.04
 MAINTAINER Paulson McIntyre, paul+mark2docker@gpmidi.net
 
-RUN useradd -m mcservers
+RUN groupadd --gid 1000 mcservers \
+  && useradd --home-dir "/var/lib/minecraft" -m --gid 1000 --uid 1000 mcservers
 
 # Do an initial update
 RUN apt-get update
@@ -27,7 +28,7 @@ ADD ./logrotate.d/supervisord.conf /etc/logrotate.d/supervisord.conf
 VOLUME ["/var/lib/minecraft","/etc/mark2"]
 
 ADD ./ /var/lib/minecraft/    
-RUN chmod +x /var/lib/minecraft/mark2 \
+RUN  chmod +x /var/lib/minecraft/mark2 \
   && mkdir -p /etc/mark2 \
   && chmod -R 755 /var/lib/minecraft/ \
   && cp -a /var/lib/minecraft/mc-main/ /etc/mark2/
@@ -47,15 +48,16 @@ RUN apt-get -yq install openssh-server vim \
   && echo "Done with SSHd debug S&C"
 
 ADD ./authorized_keys /root/.ssh/authorized_keys
-RUN chmod 400 /root/.ssh/authorized_keys && chown root:root /root/.ssh/authorized_keys
 
-RUN chown -R mcservers:mcservers /var/lib/minecraft \
+RUN  chmod 400 /root/.ssh/authorized_keys \
+  && chown root:root /root/.ssh/authorized_keys \
+  && chown -R 1000.1000 /var/lib/minecraft \
   && chmod -R 755 /var/lib/minecraft
 
 #RUN apt-get remove -y \
 #  build-essential openssh-server vim
 
-EXPOSE 25565
+EXPOSE 22 25565
 
 CMD ["supervisord", "--nodaemon", "--logfile=/var/log/supervisord/supervisord.log", "--loglevel=warn", "--logfile_maxbytes=1GB", "--logfile_backups=0"]
 
