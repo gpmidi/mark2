@@ -25,8 +25,6 @@ ADD ./supervisord.d/ /etc/supervisor/conf.d/
 # Log rotate config
 ADD ./logrotate.d/supervisord.conf /etc/logrotate.d/supervisord.conf
 
-VOLUME ["/var/lib/minecraft","/etc/mark2"]
-
 ADD ./ /var/lib/minecraft/    
 RUN  chmod +x /var/lib/minecraft/mark2 \
   && mkdir -p /etc/mark2 \
@@ -57,6 +55,6 @@ RUN  chmod 400 /root/.ssh/authorized_keys \
 #  build-essential openssh-server vim
 
 EXPOSE 22 25565
-
+VOLUME ["/var/lib/minecraft","/etc/mark2"]
 CMD ["supervisord", "--nodaemon", "--logfile=/var/log/supervisor/supervisord.log", "--loglevel=warn", "--logfile_maxbytes=1GB", "--logfile_backups=0"]
 
