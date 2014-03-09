@@ -34,7 +34,6 @@ RUN wget -O /var/lib/minecraft/mc-main/minecraft.jar https://s3.amazonaws.com/Mi
 RUN pip install -r /var/lib/minecraft/requirements.txt
 RUN ln -s /var/lib/minecraft/mark2 /usr/bin/mark2
 
-# Warning: This should not be used in a production setup
 # Basic SSHd setup
 RUN apt-get -yq install openssh-server vim \
   && mkdir -p /var/run/sshd \
@@ -43,7 +42,7 @@ RUN apt-get -yq install openssh-server vim \
   && chmod 700 /root/.ssh \
   && echo "Done with SSHd debug S&C"
 
-ADD authorized_keys /root/.ssh/authorized_keys
+ADD ./authorized_keys /root/.ssh/authorized_keys
 RUN chmod 400 /root/.ssh/authorized_keys && chown root:root /root/.ssh/authorized_keys
 
 RUN chown -R mcservers:mcservers /var/lib/minecraft \
