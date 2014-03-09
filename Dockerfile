@@ -19,7 +19,7 @@ RUN mkdir -p /var/log/supervisord && \
   chmod 700 /var/log/supervisord/
 
 # Daemons to run
-ADD ./supervisord.d/supervisord.conf.d/*.conf /etc/supervisor/conf.d/
+ADD ./supervisord.d/*.conf /etc/supervisor/conf.d/
 
 # Log rotate config
 ADD ./logrotate.d/supervisord.conf /etc/logrotate.d/supervisord.conf
