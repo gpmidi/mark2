@@ -48,8 +48,8 @@ RUN chmod 400 /root/.ssh/authorized_keys && chown root:root /root/.ssh/authorize
 RUN chown -R mcservers:mcservers /var/lib/minecraft \
   && chmod -R 755 /var/lib/minecraft
 
-RUN apt-get remove -y \
-  build-essential wget curl
+#RUN apt-get remove -y \
+#  build-essential openssh-server vim
 
 EXPOSE 25565
 
